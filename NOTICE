@@ -1,0 +1,18 @@
+LightWAM-AD
+===========
+
+This repository is an independent research implementation derived from the
+open-source SimWAM codebase and informed by Light-WAM and Fast-WAM.
+
+Upstream projects:
+
+- SimWAM: https://github.com/H-EmbodVis/SimWAM
+- Light-WAM: https://arxiv.org/abs/2606.08242
+- Fast-WAM: https://arxiv.org/abs/2603.16666
+
+The repository retains the MIT license and copyright notice from SimWAM.
+Code or assets carried from other projects remain subject to their original
+notices and licenses.  LightWAM-AD changes include the direct representation-
+to-trajectory architecture, slot-preserving fusion head, Wan2.1-1.3B loader,
+native-latent future supervision path, NAVSIM alignment checks, configurations,
+tests, and documentation.

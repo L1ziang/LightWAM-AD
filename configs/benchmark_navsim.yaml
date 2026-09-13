@@ -1,0 +1,23 @@
+# @package _global_
+defaults:
+  - sim_navsim
+  - override /task: lightwam_ad_navsim_front_384x672
+  - _self_
+
+BENCHMARK:
+  output_dir: ./benchmark_results/navsim/${now:%Y%m%d_%H%M%S}
+  num_samples: 200
+  warmup: 30
+  repeats: 3
+  profile_samples: 30
+  seed: 42
+  cpu_threads: 8
+  variants: [baseline, early_exit]
+  # Absolute tolerance on normalized output coordinates, no relative tolerance.
+  # Any failure stops before publishing comparative timings.
+  parity_atol: 0.0
+
+EVALUATION:
+  device: cuda:0
+  infer_mode: action_only
+  scene_filter: ./navsim_v2/navsim/planning/script/config/common/train_test_split/scene_filter/navtest.yaml

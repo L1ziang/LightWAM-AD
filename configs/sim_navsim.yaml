@@ -1,0 +1,55 @@
+# @package _global_
+
+defaults:
+  - train
+  - override /task: lightwam_ad_navsim_front_384x672
+  - _self_
+
+ckpt: null
+gpu_id: 0
+
+experiment_name: null
+
+EVALUATION:
+  split: navtest
+  output_dir: ./evaluate_results/navsim/${hydra:runtime.choices.task}/${experiment_name}/${now:%Y%m%d_%H%M%S}
+  max_samples: null
+  save_videos: false
+  save_video_limit: 50
+  save_pred_only_video: false
+  save_gt_video: false
+  infer_mode: action_only
+  num_inference_steps: ${eval_num_inference_steps}
+  sigma_shift: null
+  text_cfg_scale: 1.0
+  negative_prompt: ""
+  rand_device: cpu
+  seed: 0
+  tiled: false
+  device: cuda
+  navsim_root: ./data/navsim
+  navsim_log_path: null
+  sensor_blobs_path: null
+  scene_filter: null
+  split_logs_key: null
+  split_config_path: null
+  save_actions: true
+  action_output_dir: null
+
+  # NAVSIM v2 prediction-only options.  These keys must be declared here so
+  # Hydra's struct mode accepts command-line overrides before the predictor can
+  # apply its environment-aware defaults.  They are shared by navtest and the
+  # synthetic two-stage navhard split.
+  openscene_data_root: null
+  original_sensor_path: null
+  synthetic_sensor_path: null
+  synthetic_scenes_path: null
+  max_tokens: null
+  overwrite: false
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: .
+  output_subdir: null

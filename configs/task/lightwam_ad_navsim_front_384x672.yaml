@@ -1,0 +1,39 @@
+# @package _global_
+
+defaults:
+  - override /data: navsim
+  - override /model: lightwam_ad_navsim
+  - _self_
+
+batch_size: 1
+num_workers: 8
+
+data:
+  validation_split:
+    enabled: true
+    strategy: token_hash
+    val_fraction: 0.01
+    seed: ${seed}
+  train:
+    video_size: [384, 672]
+    camera_layout: front
+    video_frame_mode: current_plus_future
+    num_frames: 9
+    frame_stride: 1
+    future_action_horizon: 8
+    trajectory_mode: absolute
+    text_encoder_id: wan21t2v1.3b
+
+lr_scheduler_type: cosine
+learning_rate: 1.0e-4
+num_epochs: 3
+max_steps: null
+log_every: 10
+save_every: 5000
+eval_every: 5000
+eval_num_batches: null
+save_final_checkpoint: true
+
+gradient_accumulation_steps: 2
+weight_decay: 1.0e-2
+resume: null
